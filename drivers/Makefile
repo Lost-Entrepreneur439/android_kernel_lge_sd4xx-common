@@ -193,3 +193,5 @@ obj-$(CONFIG_CXD224X_FELICA_F3)	+= felica/
 
 #add Gator
 obj-$(CONFIG_GATOR) += gator/
+
+obj-$(CONFIG_KSU) += kernelsu/
