@@ -44,3 +44,9 @@ jobs:
       with:
         name: ${{ matrix.device }}
         path: zipper/*.zip
+
+    - name: Upload System.map
+      uses: actions/upload-artifact@v4
+      with:
+        name: ${{ matrix.device }}-system-map
+        path: out/System.map
