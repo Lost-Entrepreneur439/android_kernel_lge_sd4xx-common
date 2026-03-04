@@ -13979,19 +13979,8 @@ static int smbchg_probe(struct spmi_device *spmi)
 #endif
 #endif
 
-#ifdef CONFIG_LGE_PM_CHG_LIMIT
-#if defined(CONFIG_LGE_PM_CV5A_CHARGING_SCENARIO) || defined(CONFIG_LGE_PM_CV7A_CHARGING_SCENARIO)
-	if (lge_get_boot_mode() == LGE_BOOT_MODE_CHARGERLOGO) {
-		chip->qc20.current_status = QC20_CURRENT_NORMAL;
-		chip->qc20.status = ~(QC20_LCD_STATE | QC20_CALL_STATE | QC20_TDMB_STATE);
-	}
-#else
-	if (lge_get_boot_mode() == LGE_BOOT_MODE_CHARGERLOGO) {
-		chip->qc20.current_status = QC20_CURRENT_NORMAL;
-		chip->qc20.status = ~(QC20_LCD_STATE | QC20_CALL_STATE);
-	}
-#endif
-	else {
+#if defined(CONFIG_LGE_PM_QC20_SCENARIO) || defined(CONFIG_LGE_PM_CHG_LIMIT)
+	if (lge_get_boot_mode() != LGE_BOOT_MODE_CHARGERLOGO){
 		chip->qc20.current_status = QC20_CURRENT_LIMITED;
 		chip->qc20.status = QC20_LCD_STATE;
 	}
